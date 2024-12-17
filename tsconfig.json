@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",                               
+    "declaration": true,
+    "noImplicitAny": false,
+    "noUnusedLocals": false,     
+    "importHelpers": true,
+    "removeComments": true,
+    "noLib": false,     
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,    
+    "target": "ES6",  
+    "sourceMap": false,
+    "outDir": "./dist",
+    "rootDir": "./lib",
+    "lib":["es7"]                                         
+  },
+  "include": [
+    "lib/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

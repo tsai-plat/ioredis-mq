@@ -1,0 +1,74 @@
+{
+  "name": "@tsailab/ioredis-mq",
+  "version": "0.1.0",
+  "description": "Implementing simple pub/sub based on redis.",
+  "main": "dist/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "tsai-plat",
+    "nestjs",
+    "nestjs-modules",
+    "redis",
+    "ioredis"
+  ],
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "tsc -p tsconfig.json",
+    "lint": "eslint \"lib/**/*.ts\" --fix",
+    "format": "prettier **/**/*.ts --ignore-path ./.prettierignore --write",
+    "test": "jest",
+    "release": "standard-version",
+    "patch": "npm run release -- --release-as patch",
+    "minor": "npm run release -- --release-as minor",
+    "major": "npm run release -- --release-as major",
+    "deploy": "sh ./publish.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsai-plat//ioredis-mq.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tsai-plat//ioredis-mq/issues"
+  },
+  "homepage": "https://github.com/tsai-plat//ioredis-mq#readme",
+  "dependencies": {
+    
+  },
+  "devDependencies": {
+    "@nestjs/config": "^3.3.0",
+    "@nestjs/common": "^10.4.15",
+    "@nestjs/core": "^10.4.15",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.10.2",
+    "@typescript-eslint/eslint-plugin": "^8.18.0",
+    "@typescript-eslint/parser": "^8.18.0",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^9.1.0",
+    "husky": "^9.1.7",
+    "ioredis": "^5.4.1",
+    "jest": "^29.7.0",
+    "lint-staged": "^15.2.11",
+    "prettier": "^3.4.2",
+    "reflect-metadata": "^0.2.2",
+    "rimraf": "^6.0.1",
+    "standard-version": "^9.5.0",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
+    "tslib": "^2.8.1",
+    "typescript": "^5.7.2"
+  },
+  "peerDependencies": {
+    "@nestjs/config": "^3.0.0",
+    "@nestjs/common": ">=6.7.0",
+    "@nestjs/core": ">=6.7.0",
+    "ioredis": ">=5.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@nestjs/config":{
+      "optional": false
+    }
+  }
+}
