@@ -4,11 +4,10 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-
         {
             "type": "node",
             "request": "launch",
-            "name": "Demo App",
+            "name": "Producer App",
             "runtimeExecutable": "npm",
             "runtimeArgs": [
                 "run",
@@ -24,9 +23,33 @@
               "skipFiles": [
                   "<node_internals>/**"
               ],
-              "cwd": "${workspaceFolder}/sample/ioredis-demo",
+              "cwd": "${workspaceFolder}/sample/mq-producer",
               "outFiles": [
-                  "${workspaceFolder}/sample/ioredis-demo/dist/**/*.js"
+                  "${workspaceFolder}/sample/mq-producer/dist/**/*.js"
+              ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Consumer App",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [
+                "run",
+                "start:debug",
+                "--",
+                "--inspect-brk"
+              ],
+              "autoAttachChildProcesses": true,
+              "console": "integratedTerminal",
+              "sourceMaps": true,
+              "restart": true,
+              "stopOnEntry": false,            
+              "skipFiles": [
+                  "<node_internals>/**"
+              ],
+              "cwd": "${workspaceFolder}/sample/mq-consumer",
+              "outFiles": [
+                  "${workspaceFolder}/sample/mq-consumer/dist/**/*.js"
               ]
         }
     ]

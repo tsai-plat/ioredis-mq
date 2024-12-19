@@ -7,6 +7,6 @@ export class ConsumerController {
 
   @Get()
   getHello() {
-    return this.appService.getHello();
+    return this.appService.sendMessage();
   }
 }

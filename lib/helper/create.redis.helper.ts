@@ -1,7 +1,7 @@
 import { Redis } from 'ioredis';
-import { IoRedisModuleError } from '../errors/ioredis.module.error';
+import { IORedisModuleError } from '../errors/ioredis.module.error';
 import {
-  IoRedisModuleOptions,
+  IORedisModuleOptions,
   Namespace,
   SingleRedisOptions,
 } from '../interfaces';
@@ -10,14 +10,14 @@ import { NAMESPACE_KEY_TOKEN } from '../ioredis.constants';
 import { get, parseNamespace } from '../utils/ioredis.utils';
 
 export function createSingleRedis(
-  moduleOpts: IoRedisModuleOptions,
+  moduleOpts: IORedisModuleOptions,
   key: string | symbol,
 ) {
   const { readyLog, errorLog, onClientCreated, redisOptions } = moduleOpts;
   const { url, path, ...commonOpitons } = redisOptions as SingleRedisOptions;
 
   if (!url?.length && !path?.length && !commonOpitons?.host?.length)
-    throw new IoRedisModuleError(`ioredis module options invalid.`);
+    throw new IORedisModuleError(`ioredis module options invalid.`);
   let client: Redis;
   if (url?.length) {
     client = new Redis(url, commonOpitons);

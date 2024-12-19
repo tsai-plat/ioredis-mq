@@ -24,6 +24,8 @@
     "@nestjs/core": "^10.0.0",
     "@nestjs/platform-express": "^10.0.0",
     "@tsailab/ioredis-mq": "link:..\\..",
+    "chalk": "4.1.2",
+    "js-yaml": "^4.1.0",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1"
   },

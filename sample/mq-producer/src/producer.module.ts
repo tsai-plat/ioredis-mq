@@ -1,13 +1,13 @@
 import { forwardRef, Module } from '@nestjs/common';
 import { ProducerController } from './producer.controller';
 import { ProducerAService } from './producer.service';
-import { IORedisMqModule } from '@tsailab/ioredis-mq';
+import { IORedisMQModule } from '@tsailab/ioredis-mq';
 import { ProducerBService } from './producer.b.servcie';
 
 @Module({
   imports: [
     forwardRef(() =>
-      IORedisMqModule.forRoot({
+      IORedisMQModule.forRoot({
         redisOptions: {
           host: '172.20.0.1',
           port: 6379,
@@ -16,6 +16,7 @@ import { ProducerBService } from './producer.b.servcie';
         },
         channels: ['chat-bot'],
         mqOptions: {
+          micro: true,
           verbose: true,
         },
       }),

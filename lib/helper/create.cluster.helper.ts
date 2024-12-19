@@ -1,23 +1,23 @@
 import { Cluster, Redis } from 'ioredis';
 import {
   ClusterRedisOptions,
-  IoRedisModuleOptions,
+  IORedisModuleOptions,
   Namespace,
 } from '../interfaces';
-import { IoRedisModuleError } from '../errors/ioredis.module.error';
+import { IORedisModuleError } from '../errors/ioredis.module.error';
 import { NAMESPACE_KEY_TOKEN } from '../ioredis.constants';
 import { ERROR_LOG, logger, READY_LOG } from '../log';
 import { get, parseNamespace } from '../utils/ioredis.utils';
 
 export function createRedisCluster(
-  moduleOpts: IoRedisModuleOptions,
+  moduleOpts: IORedisModuleOptions,
   key: string | symbol,
 ) {
   const { readyLog, errorLog, onClientCreated, redisOptions } = moduleOpts;
   const { nodes, ...commonOpitons } = redisOptions as ClusterRedisOptions;
 
   if (!nodes?.length)
-    throw new IoRedisModuleError(
+    throw new IORedisModuleError(
       `ioredis module options cluster required nodes.`,
     );
 

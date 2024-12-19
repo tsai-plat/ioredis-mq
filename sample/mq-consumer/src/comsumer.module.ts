@@ -2,31 +2,41 @@ import { Module } from '@nestjs/common';
 import { ConsumerController } from './consumer.controller';
 import { ConsumerAppService } from './consumer.service';
 import {
-  IoRedisModuleAsyncOptions,
-  IORedisMqModule,
-  // RedisMQService,
+  IORedisModuleAsyncOptions,
+  IORedisMQModule,
+  yamlConfigLoader,
 } from '@tsailab/ioredis-mq';
+
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
-    IORedisMqModule.forRootAsync(
+    ConfigModule.forRoot({
+      isGlobal: true,
+      load: [yamlConfigLoader],
+    }),
+    IORedisMQModule.forRootAsync(
       {
-        useFactory() {
-          return {
-            redisOptions: {
-              host: '172.20.0.1',
-              port: 6379,
-              db: 7,
-              password: 'admin123',
-            },
-            channels: ['chat-bot'],
-            mqOptions: {
-              verbose: true,
-            },
-          };
+        useFactory(config: ConfigService) {
+          const cfg = config.get('ioredis');
+          globalThis.console.log('Load local yaml config>>>', cfg);
+          return (
+            cfg || {
+              redisOptions: {
+                host: '172.20.0.1',
+                port: 6379,
+                db: 7,
+                password: '123',
+              },
+              channels: ['chat-bot'],
+              mqOptions: {
+                verbose: true,
+              },
+            }
+          );
         },
-        inject: [],
-      } as IoRedisModuleAsyncOptions,
+        inject: [ConfigService],
+      } as IORedisModuleAsyncOptions,
       true,
     ),
   ],

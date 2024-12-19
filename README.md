@@ -1,3 +1,4 @@
+<h1 align="center">@Tsailab/ioredis-mq</h1>
 <p align="center" >
   <a href="https://github.com/lotolab" target="blank">
     <img src="https://ucarecdn.com/eac2c945-177d-4fc9-8bc1-fa2be48ad3a2/lotolab_golden.svg" width="100" alt="Tsai Logo" />
@@ -5,7 +6,7 @@
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/~tsailab" target="_blank"><img src="https://img.shields.io/npm/l/%40tsailab%2Fcli?color=%23FFDEAD&label=@tsailab/ioredis-mq" alt="License" /></a>
+  <a href="https://www.npmjs.com/~tsailab" target="_blank"><img src="https://img.shields.io/npm/l/%40tsailab%2Fcli?color=%23FFDEAD&label=License" alt="License" /></a>
   <a href="https://discord.gg/lotolab" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
   <a href="https://x.com/lamborghini171" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>  
   <a href="https://www.npmjs.com/~tsailab" target="_blank"><img src="https://img.shields.io/npm/v/@tsailab/cli.svg?label=@tsailab/ioredis-mq" alt="Tsai cli" /></a>
@@ -14,8 +15,9 @@
 
 ## Description
 
-The Tsai CLI is extends from nestjs cli.
-It is a command-line interface tool that helps you to initialize, develop, and maintain your Nestjs monorepo workspace. It assists in multiple ways, including scaffolding the project, serving it in development mode, and building and bundling the application for production distribution. It embodies best-practice architectural patterns to encourage well-structured apps.
+In the world of distributed systems, ensuring that a message is processed exactly once can be a significant challenge.
+
+The @tsailab/ioredis-mq make sure exactly-once message processing using Redis Pub/Sub with distributed locks in a NestJS application, running on Kubernetes, and deployed using Helm. This solution ensures that multiple instances of a service receive the same message, but only one instance processes it, avoiding duplicate processing.
 
 
 
@@ -24,54 +26,82 @@ It is a command-line interface tool that helps you to initialize, develop, and m
 ## Installation
 ```
 $ npm install -g @tsailab/ioredis-mq
-```
-
-- show commands help
 
 ```
 
-```
 
 ## Usage
 
-### Configuration
+> IORedisMQModule providers : RedisService ,RedisMQService and yamlConfigLoader
 
-> Create an monorepo workspace use tsai step by step
+- RedisService: a ioredis client wrapper
+- RedisMQService: a ioredis pub/sub client wrapper
+- yamlConfigLoader : a environment yaml configuration files loader tool
 
-1. create application
+### Configuration forRoot
 
+```ts
+@Module(
+  imports:[
+    IORedisMqModule.forRoot({
+      type: 'single',// single
+      redisOptions: {
+        host: '172.20.0.1',
+        port: 6379,
+        db: 0,
+        password: 'RDS123',
+      },
+    }),
+    ... // others
+  ]
+)
+export class ProducerAppModule{}
+```
 
+### Configuration forRoot
+
+```ts
+import {
+  IORedisModuleAsyncOptions,
+  IORedisMQModule,
+  yamlConfigLoader,
+} from '@tsailab/ioredis-mq'
+@Module({
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      load: [yamlConfigLoader],
+    }),
+    IORedisMQModule.forRootAsync(
+      {
+        useFactory(config: ConfigService) {
+          // load form your app environments .conf/<stage>/*.yaml files
+          // stage: dev,prod,test,stage 
+          const cfg = config.get('ioredis');
+          return cfg 
+        },
+        inject: [ConfigService],
+      } as IORedisModuleAsyncOptions,
+      true,
+    ),
+  ],
+})
+
+```
 
 
 :boom: :boom: :boom: :star2: :star2: :two_hearts: :two_hearts: :two_hearts:
 
 <h4 align="left">
-Congratulations, you have completed the creation of the Monorepo project
+Congratulations, you have use RedisService or RedisMQService in your modules.
 </h4>
 
 :star: :star: :star: :star: :star: :star: :star: :star:
 
 
-Learn more in the [Nestjs official documentation](https://docs.nestjs.com/cli/overview).
-
-### Use pnpm management your packages
-
-
-
-```bash
-# add package denpendency  
-pnpm add vue -Sw
-
-# add package to some lib
-pnpm -F core add lodash -D --save-peer 
-
-# excute npm scripts
-pnpm -F core build
-```
-
-Learn more commands in the [PNPM offcial documentation](https://pnpm.io/workspaces)
+Learn more usages in the source [ioredis-mq docs](https://github.com/tsai-plat/ioredis-mq/docs)
  
-
+------
 
 ## Stay in touch
 
@@ -86,3 +116,17 @@ Learn more commands in the [PNPM offcial documentation](https://pnpm.io/workspac
 ## License
 
 The @Tsailab/ioredis-mq packages is [MIT licensed](LICENSE).
+
+> Give me a cup of coffee? Thanks much.
+
+<div align="center">
+  <div>
+    <img src="https://blog.lanbery.cc/img/wechat-toll.png" alt="Wechat" />
+    <span>Wechat</span>
+  </div>
+  <span>OR</span>
+    <div>
+    <img src="https://blog.lanbery.cc/img/wechat-toll.png" alt="Wechat" />
+    <span>Wechat</span>
+  </div>
+</div>
