@@ -96,7 +96,7 @@ Congratulations, you have use RedisService or RedisMQService in your modules.
 :star: :star: :star: :star: :star: :star: :star: :star:
 
 
-Learn more usages in the source [ioredis-mq docs](https://github.com/tsai-plat/ioredis-mq/docs)
+Learn more usages in the source [ioredis-mq docs](https://github.com/tsai-plat/ioredis-mq/tree/main/docs)
  
 ------
 
