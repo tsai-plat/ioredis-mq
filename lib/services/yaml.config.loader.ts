@@ -20,14 +20,14 @@ const STAGE_MAP: { [k: string]: StageEnvType } = {
  * valid app.yml exist
  * return kvs as Record<string,any>
  */
-export default () => {
+export default (confBaseDir:string = '.conf') => {
   const stage = process.env.STAGE || 'prod';
 
   const appBaseDir = process.cwd();
 
   const confBasename = STAGE_MAP[stage] ?? STAGE_MAP['prod'];
 
-  const confDir = join(appBaseDir, '.conf', confBasename);
+  const confDir = join(appBaseDir, confBaseDir, confBasename);
 
   if (!existsSync(resolve(confDir, APP_CONFIG_FILE))) {
     throw new Error(`App miss config file ${APP_CONFIG_FILE} in ${confDir}`);

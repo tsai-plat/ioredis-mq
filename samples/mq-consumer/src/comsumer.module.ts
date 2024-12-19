@@ -13,7 +13,11 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      load: [yamlConfigLoader],
+      load: [
+        ()=>{
+          return yamlConfigLoader('.conf')
+        }
+      ],
     }),
     IORedisMQModule.forRootAsync(
       {

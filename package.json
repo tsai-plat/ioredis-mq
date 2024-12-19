@@ -1,10 +1,13 @@
 {
   "name": "@tsailab/ioredis-mq",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "Implementing simple pub/sub based on redis.",
   "main": "dist/index.js",
   "publishConfig": {
     "access": "public"
+  },
+  "npm":{
+    "publish":false
   },
   "keywords": [
     "tsai-plat",
@@ -21,7 +24,10 @@
     "format": "prettier **/**/*.ts --ignore-path ./.prettierignore --write",
     "test:dev": "jest --config ./tests/jest-e2e.json --runInBand --watch --verbose",
     "test:e2e": "jest --config ./tests/jest-e2e.json --runInBand --coverage",
-    "release": "standard-version",
+    "prepack": "npm run build",
+    "publish:npm": "npm publish --access public",
+    "prerelease": "npm run build",
+    "release": "release-it",
     "patch": "npm run release -- --release-as patch",
     "minor": "npm run release -- --release-as minor",
     "major": "npm run release -- --release-as major",

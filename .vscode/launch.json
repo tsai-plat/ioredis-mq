@@ -23,9 +23,9 @@
               "skipFiles": [
                   "<node_internals>/**"
               ],
-              "cwd": "${workspaceFolder}/sample/mq-producer",
+              "cwd": "${workspaceFolder}/samples/mq-producer",
               "outFiles": [
-                  "${workspaceFolder}/sample/mq-producer/dist/**/*.js"
+                  "${workspaceFolder}/samples/mq-producer/dist/**/*.js"
               ]
         },
         {
@@ -47,9 +47,9 @@
               "skipFiles": [
                   "<node_internals>/**"
               ],
-              "cwd": "${workspaceFolder}/sample/mq-consumer",
+              "cwd": "${workspaceFolder}/samples/mq-consumer",
               "outFiles": [
-                  "${workspaceFolder}/sample/mq-consumer/dist/**/*.js"
+                  "${workspaceFolder}/samples/mq-consumer/dist/**/*.js"
               ]
         }
     ]
