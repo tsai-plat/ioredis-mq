@@ -13,12 +13,16 @@
     "sourceMap": false,
     "outDir": "./dist",
     "rootDir": "./lib",
-    "lib":["es7"]                                         
+    "lib":["es7"],
+    "skipLibCheck": true,
+    "useUnknownInCatchVariables": false                                    
   },
   "include": [
     "lib/**/*"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "**/*.spec.ts",
+    "tests"
   ]
 }

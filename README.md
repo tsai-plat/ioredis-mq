@@ -19,14 +19,11 @@ In the world of distributed systems, ensuring that a message is processed exactl
 
 The @tsailab/ioredis-mq make sure exactly-once message processing using Redis Pub/Sub with distributed locks in a NestJS application, running on Kubernetes, and deployed using Helm. This solution ensures that multiple instances of a service receive the same message, but only one instance processes it, avoiding duplicate processing.
 
-
-
-
+![ioredis-mq architecture](Redis-MQ.png)
 
 ## Installation
 ```
 $ npm install -g @tsailab/ioredis-mq
-
 ```
 
 
