@@ -116,14 +116,7 @@ The @Tsailab/ioredis-mq packages is [MIT licensed](LICENSE).
 
 > Give me a cup of coffee? Thanks much.
 
-<div align="center">
-  <div>
-    <img src="https://blog.lanbery.cc/img/wechat-toll.png" alt="Wechat" />
-    <span>Wechat</span>
-  </div>
-  <span>OR</span>
-    <div>
-    <img src="https://blog.lanbery.cc/img/wechat-toll.png" alt="Wechat" />
-    <span>Wechat</span>
-  </div>
-</div>
+![Wechat QRCode](wechat-toll.png)
+
+![Etherum](./0x01dc42c9a940a2517b23fd9a3c26c2f30935da59.png)
+
