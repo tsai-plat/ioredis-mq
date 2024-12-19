@@ -21,7 +21,7 @@ export function validMQChannelNames(channels: string[]): string[] {
   return c;
 }
 
-export function validateOptionsType(type?:IORedisOptionsType){
+export function validateOptionsType(type?: IORedisOptionsType) {
   if (type && !['single', 'cluster'].includes(type))
     throw new IORedisModuleError(
       `ioredis type required values of single or cluster.`,

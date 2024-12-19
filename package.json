@@ -1,13 +1,13 @@
 {
   "name": "@tsailab/ioredis-mq",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Implementing simple pub/sub based on redis.",
   "main": "dist/index.js",
   "publishConfig": {
     "access": "public"
   },
-  "npm":{
-    "publish":false
+  "npm": {
+    "publish": false
   },
   "keywords": [
     "tsai-plat",

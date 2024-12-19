@@ -1,10 +1,14 @@
-
-import { Cluster, ClusterNode, ClusterOptions, Redis, RedisOptions } from "ioredis"
-
+import {
+  Cluster,
+  ClusterNode,
+  ClusterOptions,
+  Redis,
+  RedisOptions,
+} from 'ioredis';
 
 export type Namespace = string | symbol;
 export type IORedisOptionsType = 'single' | 'cluster';
-export type IORedisClient = Redis|Cluster
+export type IORedisClient = Redis | Cluster;
 
 /** IORedis Module Options */
 export interface SingleRedisOptions extends RedisOptions {
@@ -17,12 +21,12 @@ export interface ClusterRedisOptions extends ClusterOptions {
 }
 
 export type ClientExtraOptions = {
-    type?: IORedisOptionsType;
-    closeClient?: boolean;
-    readyLog?: boolean;
-    errorLog?: boolean;
-    onClientCreated?: (client: IORedisClient) => void;
-}
+  type?: IORedisOptionsType;
+  closeClient?: boolean;
+  readyLog?: boolean;
+  errorLog?: boolean;
+  onClientCreated?: (client: IORedisClient) => void;
+};
 
 /** IORedis MQ Module Options */
 export type MQChannelType =
@@ -33,25 +37,24 @@ export type MQChannelType =
   | string;
 
 export interface MQOptions {
-    verbose?: boolean;
-    ttl?: number;
-    maxListeners?: number;
-    micro?: boolean;
+  verbose?: boolean;
+  ttl?: number;
+  maxListeners?: number;
+  micro?: boolean;
 }
 
 export type IORedisModuleOptions = ClientExtraOptions & {
-    channels?:MQChannelType[]
-    redisOptions?: SingleRedisOptions | ClusterRedisOptions;
-    mqOptions?: MQOptions
-}
-
+  channels?: MQChannelType[];
+  redisOptions?: SingleRedisOptions | ClusterRedisOptions;
+  mqOptions?: MQOptions;
+};
 
 /** MQ */
 export type MQMessageType<P = any> = {
-    id: string;
-    ct?: string;
-    sender?: string;
-    payload: P;
+  id: string;
+  ct?: string;
+  sender?: string;
+  payload: P;
 };
 
 export type MQHandleFn<T = MQMessageType> = (
@@ -68,4 +71,6 @@ export type MQMessageHandler = {
  * @description
  *  unused
  */
-export type IORedisClientFactory = (options?:IORedisModuleOptions)=>Promise<IORedisClient>
+export type IORedisClientFactory = (
+  options?: IORedisModuleOptions,
+) => Promise<IORedisClient>;

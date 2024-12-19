@@ -16,9 +16,9 @@ export function genMQClientId(): string {
   return `@@${id}@@`;
 }
 
-export function generateModuleId():string{
+export function generateModuleId(): string {
   const uuid = randomUUID().replace(/\-/g, '');
   const id = BigInt(`0x${uuid}`).toString(36);
 
-  return `@TSAI-${id}`
+  return `@TSAI-${id}`;
 }

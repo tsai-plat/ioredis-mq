@@ -20,7 +20,7 @@ const STAGE_MAP: { [k: string]: StageEnvType } = {
  * valid app.yml exist
  * return kvs as Record<string,any>
  */
-export default (confBaseDir:string = '.conf') => {
+export default (confBaseDir: string = '.conf') => {
   const stage = process.env.STAGE || 'prod';
 
   const appBaseDir = process.cwd();

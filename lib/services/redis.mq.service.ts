@@ -36,7 +36,7 @@ export class RedisMQService implements OnModuleInit {
   private maxListeners = 3;
   private debug = true;
   private ttl: number = DEFAULT_LOCK_TTL;
-  private readonly micro: boolean ;
+  private readonly micro: boolean;
   public readonly mqid = genMQClientId();
 
   constructor(
@@ -77,7 +77,7 @@ export class RedisMQService implements OnModuleInit {
   async publishMessage<T = any>(
     data: T,
     channel: MQChannelType = DEFAUL_PUB_CHANNEL,
-  ):Promise<MQMessageType<T>|null> {
+  ): Promise<MQMessageType<T> | null> {
     const msgid: string = await createMessageId();
     const messageObj: MQMessageType<T> = {
       id: msgid,
@@ -93,14 +93,14 @@ export class RedisMQService implements OnModuleInit {
 
     await this.redis.publish(channel, JSON.stringify(messageObj));
 
-    return messageObj
+    return messageObj;
   }
 
   /**
    * subscribe messages
    * @param channels with global configuration
    */
-  private async subscribeToChannel( channels:string[]) {
+  private async subscribeToChannel(channels: string[]) {
     const subscriber = this.redis.duplicate();
 
     subscriber.on(MQ_MESSAGE_CHANNEL, async (channel, message) => {

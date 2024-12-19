@@ -1,2 +1,2 @@
-export * from './core.interface'
-export * from './helper.interfaces'
+export * from './core.interface';
+export * from './helper.interfaces';

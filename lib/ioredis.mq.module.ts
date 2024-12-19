@@ -1,4 +1,4 @@
-import { DynamicModule, Module,  } from '@nestjs/common';
+import { DynamicModule, Module } from '@nestjs/common';
 import { IORedisModuleAsyncOptions, IORedisModuleOptions } from './interfaces';
 import { IORedisCoreModule } from './ioredis.core.module';
 
@@ -13,11 +13,10 @@ export class IORedisMQModule {
     options: IORedisModuleOptions,
     isGlobal: boolean = true,
   ): DynamicModule {
-
     return {
       global: isGlobal,
       module: IORedisMQModule,
-      imports:[IORedisCoreModule.forRoot(options)]
+      imports: [IORedisCoreModule.forRoot(options)],
     };
   }
 
@@ -25,11 +24,10 @@ export class IORedisMQModule {
     options: IORedisModuleAsyncOptions,
     isGlobal: boolean = true,
   ) {
-   
     return {
       global: isGlobal,
       module: IORedisMQModule,
-      imports:[IORedisCoreModule.forRootAsync(options)]
+      imports: [IORedisCoreModule.forRootAsync(options)],
     };
   }
 }

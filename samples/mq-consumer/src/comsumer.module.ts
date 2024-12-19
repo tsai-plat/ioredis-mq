@@ -14,9 +14,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     ConfigModule.forRoot({
       isGlobal: true,
       load: [
-        ()=>{
-          return yamlConfigLoader('.conf')
-        }
+        () => {
+          return yamlConfigLoader('.conf');
+        },
       ],
     }),
     IORedisMQModule.forRootAsync(
