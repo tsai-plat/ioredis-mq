@@ -177,7 +177,7 @@ export class RedisMQService implements OnModuleInit {
       );
     }
 
-    const handlers = this.channelMap.get(channel);
+    const handlers = this.channelMap.get(channel) as Array<MQHandleFn>;
     if (handlers.length >= this.maxListeners) {
       throw new IORedisModuleError(
         `MQ handlers required max ${this.maxListeners},can not registered.`,
@@ -230,11 +230,11 @@ export class RedisMQService implements OnModuleInit {
     handler?: MQHandleFn,
   ): Promise<boolean> {
     if (!this.channelMap.has(channel)) return true;
-    const listeners = this.channelMap.get(channel);
+    const listeners = this.channelMap.get(channel) as Array<MQHandleFn>;
     if (!listeners.length) return true;
 
     if (!handler) {
-      this.channelMap.get(channel).splice(0, listeners.length);
+      this.channelMap.get(channel)?.splice(0, listeners.length);
       return true;
     }
 

@@ -36,7 +36,8 @@
   },
   "files": [
     "Redis-MQ.png",
-    "dist/*"
+    "dist/*",
+    "README.md"
   ],
   "repository": {
     "type": "git",
@@ -47,59 +48,44 @@
     "url": "https://github.com/tsai-plat/ioredis-mq/issues"
   },
   "homepage": "https://github.com/tsai-plat/ioredis-mq#readme",
+  "lint-staged": {
+    "**/*.{ts,json}": []
+  },
   "devDependencies": {
     "@commitlint/cli": "^19.6.1",
-    "@commitlint/config-angular": "^19.6.0",
-    "@nestjs/common": "^10.4.15",
+    "@commitlint/config-conventional": "^19.6.0",
+    "@nestjs/common": "10.3.0",
     "@nestjs/config": "^3.3.0",
-    "@nestjs/core": "^10.4.15",
-    "@nestjs/platform-express": "^10.4.15",
+    "@nestjs/core": "10.3.0",
+    "@nestjs/platform-express": "^10.3.0",
     "@nestjs/testing": "^10.4.15",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.10.2",
     "@types/supertest": "^6.0.2",
-    "@typescript-eslint/eslint-plugin": "^8.18.0",
-    "@typescript-eslint/parser": "^8.18.0",
-    "chalk": "4.1.2",
-    "eslint": "^8.57.1",
+    "@typescript-eslint/eslint-plugin": "^8.18.1",
+    "@typescript-eslint/parser": "^8.18.1",
+    "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.31.0",
     "husky": "^9.1.7",
-    "ioredis": "^5.4.1",
+    "ioredis": "^5.4.2",
     "jest": "^29.7.0",
     "js-yaml": "^4.1.0",
     "lint-staged": "^15.2.11",
     "prettier": "^3.4.2",
     "reflect-metadata": "^0.2.2",
-    "release-it": "^17.10.0",
     "rimraf": "^6.0.1",
-    "standard-version": "^9.5.0",
+    "rxjs": "^7.8.1",
     "supertest": "^7.0.0",
     "ts-jest": "^29.2.5",
-    "ts-node": "^10.9.2",
-    "tslib": "^2.8.1",
     "typescript": "^5.7.2"
   },
   "peerDependencies": {
-    "@nestjs/common": ">=6.7.0",
-    "@nestjs/config": ">=3.0.0",
-    "@nestjs/core": ">=6.7.0",
-    "chalk": "^4.1.2",
-    "ioredis": ">=5.0.0",
-    "js-yaml": "^4.1.0"
-  },
-  "peerDependenciesMeta": {
-    "@nestjs/config": {
-      "optional": true
-    },
-    "js-yaml": {
-      "optional": true
-    },
-    "chalk": {
-      "optional": true
-    }
-  },
-  "lint-staged": {
-    "**/*.{ts,json}": []
+    "@nestjs/common": "^8.0.0 || ^9.0.0 || ^10.0.0",
+    "@nestjs/core": "^8.0.0 || ^9.0.0 || ^10.0.0",
+    "@nestjs/platform-express": "^10.3.0",
+    "eslint": "^8.57.0",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.2.0"
   }
 }

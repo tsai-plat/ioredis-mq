@@ -5,8 +5,7 @@ import { Injectable, Logger } from '@nestjs/common';
 export class RedisCliTestService {
   protected logger = new Logger(RedisCliTestService.name);
   private readonly mockRedis = new Map<string, any>();
-  constructor() // private readonly redis:RedisService
-  {}
+  constructor() {} // private readonly redis:RedisService
 
   async setCache(key: string, value: any) {
     await this.mockRedis.set(key, value);
