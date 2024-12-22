@@ -1,5 +1,5 @@
 {
-    "moduleFileExtension":["js","json","ts"],
+    "moduleFileExtensions":["js","json","ts"],
     "rootDir":".",
     "testEnvironment":"node",
     "testRegex":".spec.ts$",
