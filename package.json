@@ -50,7 +50,7 @@
   "homepage": "https://github.com/tsai-plat/ioredis-mq#readme",
   "lint-staged": {
     "lib/**/*.{js,ts}": [
-      "npm run prebuild","git pull"
+      "git pull","npm lint"
     ],
     "tests/**/*.{ts,json}":[
       "npm run test:e2e"
