@@ -2,7 +2,7 @@ import { IORedisModuleError } from '../errors';
 import { IORedisOptionsType } from '../interfaces/core.interface';
 
 export function validMQChannelNames(channels: string[]): string[] {
-  const c = channels.reduce((prev, curr) => {
+  const c = channels.reduce((prev:string[], curr) => {
     if (!prev.includes(curr)) {
       prev.push(curr);
     }

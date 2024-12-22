@@ -27,7 +27,7 @@
     "prepack": "npm run build",
     "publish:npm": "npm publish --access public",
     "prerelease": "npm run build",
-    "release": "release-it",
+    "release": "changeset version",
     "patch": "npm run release -- --release-as patch",
     "minor": "npm run release -- --release-as minor",
     "major": "npm run release -- --release-as major",
@@ -50,8 +50,7 @@
   "homepage": "https://github.com/tsai-plat/ioredis-mq#readme",
   "lint-staged": {
     "lib/**/*.{js,ts}": [
-      "git pull",
-      "npm lint"
+      "npm run lint"
     ],
     "tests/**/*.{ts,json}": [
       "npm run test:e2e"
@@ -78,7 +77,7 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.31.0",
     "husky": "^9.1.7",
-    "ioredis": "^5.4.2",
+    "ioredis": "5.4.1",
     "jest": "^29.7.0",
     "js-yaml": "^4.1.0",
     "lint-staged": "^15.2.11",
@@ -96,6 +95,7 @@
     "@nestjs/platform-express": "^10.3.0",
     "chalk": "4.1.2",
     "eslint": "^8.57.0",
+    "ioredis": "5.4.1",
     "js-yaml": "^4.1.0",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.2.0"

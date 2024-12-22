@@ -24,7 +24,7 @@ import {
 import { promisify } from 'util';
 import { IORedisModuleError } from '../errors';
 
-const DEFAULT_LOCK_TTL = 2000;
+const DEFAULT_LOCK_TTL = 5000;// PX
 const defaultChannels: MQChannelType[] = [DEFAUL_PUB_CHANNEL];
 const defaultMaxListeners = 5;
 export class RedisMQService implements OnModuleInit {
@@ -264,7 +264,9 @@ export class RedisMQService implements OnModuleInit {
 
   private async acquireLock(key: string, ttl = this.ttl): Promise<boolean> {
     const setAsync = promisify(this.redis.set).bind(this.redis);
-    const result = await setAsync(key, 'locked', 'NX', 'PX', ttl);
+    this.redis.set('1',1,'NX')
+
+    const result = await setAsync(key, 'locked','NX','PX',ttl);
     return result === 'OK';
   }
 
