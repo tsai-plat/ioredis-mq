@@ -51,6 +51,9 @@
   "lint-staged": {
     "lib/**/*.{js,ts}": [
       "npm run prebuild","git pull"
+    ],
+    "tests/**/*.{ts,json}":[
+      "npm run test:e2e"
     ]
   },
   "devDependencies": {
