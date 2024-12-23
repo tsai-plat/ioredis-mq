@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: actions/checkout@master
+        uses: actions/checkout@main
         with:
           # This makes Actions fetch all Git history so that Changesets
           # can generate changelogs with the correct commits.
@@ -24,15 +24,15 @@ jobs:
 
       # If you use npm instead of yarn, change this to `npm install`.
       - name: Install dependencies
-        run: yarn
+        run: pnpm
 
       # Change this to customize your build command.
       - name: Build
-        run: yarn build
+        run: pnpm build
 
       # Change this to customize your test command.
       - name: Test
-        run: yarn test
+        run: pnpm test
 
       - name: Create .npmrc
         run: |
