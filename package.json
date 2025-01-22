@@ -1,6 +1,6 @@
 {
   "name": "@tsailab/ioredis-mq",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Implementing simple pub/sub based on redis.",
   "main": "dist/index.js",
   "publishConfig": {
