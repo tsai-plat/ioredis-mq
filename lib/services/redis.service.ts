@@ -75,6 +75,12 @@ export class RedisService {
     }
   }
 
+  /**
+   * 
+   * @param key 
+   * @param safity 
+   * @returns boolean
+   */
   async hasKey(key: string, safity?: boolean): Promise<boolean> {
     const b = await this.client.exists(key);
 
@@ -94,6 +100,12 @@ export class RedisService {
     return await this.client.ttl(key);
   }
 
+  /**
+   * 
+   * @param key 
+   * @param ex 
+   * @returns 
+   */
   async setExpires(key: string, ex: number): Promise<number> {
     return await this.client.expire(key, ex);
   }

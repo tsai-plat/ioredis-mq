@@ -110,7 +110,10 @@ export class RedisMQService implements OnModuleInit {
       // messages are only locked by the registered handler
       await this.handleMessage(channel, message);
     });
-
+    this.logged(
+      'log',
+      `subscriber channels [${channels.join(',')}]`,
+    );
     await subscriber.subscribe(...channels);
   }
 
@@ -170,6 +173,9 @@ export class RedisMQService implements OnModuleInit {
   }
 
   registHandler(channel: MQChannelType, handler: MQHandleFn) {
+    if(this.debug){
+      this.logger.warn(`Regist channel [${channel}] for ${handler.name}`)
+    }
     if (!this.channelMap.has(channel)) {
       throw new IORedisModuleError(
         `Registered channel name [${channel}] not in your module configurations channels:
