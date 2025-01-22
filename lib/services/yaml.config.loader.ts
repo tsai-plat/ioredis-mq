@@ -62,6 +62,10 @@ export default (confBaseDir: string = '.conf') => {
     };
   });
 
+  if(confBasename === 'dev'){
+    console.log(chalk.cyanBright(`Application load configuration ${files.join(',')}`))
+  }
+
   return {
     ...kvs,
     ...appConfigKvs,

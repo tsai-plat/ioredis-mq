@@ -62,6 +62,7 @@ export class RedisMQService implements OnModuleInit {
   }
 
   async onModuleInit(): Promise<void> {
+    
     if (this.getSupportChannels()?.length) {
       this.subscribeToChannel(this.getSupportChannels());
     } else {
