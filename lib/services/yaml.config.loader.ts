@@ -1,7 +1,6 @@
 import { existsSync, readdirSync, statSync, readFileSync } from 'fs';
 import { resolve, join } from 'path';
 import * as yaml from 'js-yaml';
-import * as chalk from 'chalk';
 
 export type StageEnvType = 'prod' | 'dev' | 'test' | 'stage';
 export const APP_CONFIG_FILE = 'app.yml';
@@ -42,9 +41,7 @@ export default (confBaseDir: string = '.conf') => {
     .filter((f) => statSync(resolve(confDir, f)).isFile());
 
   console.log(
-    chalk.blueBright(
       `Stage Mode [${stage}]:load app config [${APP_CONFIG_FILE}]`,
-    ),
   );
   const appConfigKvs = yaml.load(
     readFileSync(resolve(confDir, APP_CONFIG_FILE), 'utf-8'),
@@ -63,7 +60,7 @@ export default (confBaseDir: string = '.conf') => {
   });
 
   if(confBasename === 'dev'){
-    console.log(chalk.cyanBright(`Application load configuration ${files.join(',')}`))
+    console.warn(`Application load configuration ${files.join(',')}`)
   }
 
   return {
