@@ -41,7 +41,7 @@ export default (confBaseDir: string = '.conf') => {
     .filter((f) => statSync(resolve(confDir, f)).isFile());
 
   console.log(
-      `Stage Mode [${stage}]:load app config [${APP_CONFIG_FILE}]`,
+      `Stage Mode [${stage}]:load app config [\x1B[34m${APP_CONFIG_FILE}\x1B[0m]`,
   );
   const appConfigKvs = yaml.load(
     readFileSync(resolve(confDir, APP_CONFIG_FILE), 'utf-8'),
@@ -60,7 +60,7 @@ export default (confBaseDir: string = '.conf') => {
   });
 
   if(confBasename === 'dev'){
-    console.warn(`Application load configuration ${files.join(',')}`)
+    console.warn(`Application load configuration \x1B[34m${files.join(',')}\x1B[0m`)
   }
 
   return {
