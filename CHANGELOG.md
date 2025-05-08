@@ -1,5 +1,11 @@
 # @tsailab/ioredis-mq
 
+## 0.0.8
+
+### Patch Changes
+
+- Update log
+
 ## 0.0.7
 
 ### Patch Changes

@@ -14,9 +14,7 @@
       "skipLibCheck": true,
       "useUnknownInCatchVariables": false
     },
-    "include": [
-      "lib/**/*"
-    ],
+    "include": ["lib/**/*"],
     "exclude": [
       "node_modules",
       "**/*.spec.ts",

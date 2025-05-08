@@ -54,7 +54,10 @@ export class RedisService {
     data: T,
     ex: number = -1,
   ): Promise<string> {
-    if (typeof data !== 'object' || !Object.keys(data as unknown as any)?.length)
+    if (
+      typeof data !== 'object' ||
+      !Object.keys(data as unknown as any)?.length
+    )
       throw new Error(`Here only save Object,Record<string,any> volume.`);
     if (ex > 0) {
       return await this.client.setex(key, ex, JSON.stringify(data));
@@ -63,7 +66,7 @@ export class RedisService {
     }
   }
 
-  async getData<T = any>(key: string): Promise<T|undefined> {
+  async getData<T = any>(key: string): Promise<T | undefined> {
     const data = await this.client.get(key);
     if (typeof data === 'undefined' || typeof data === 'symbol') return;
 
@@ -76,9 +79,9 @@ export class RedisService {
   }
 
   /**
-   * 
-   * @param key 
-   * @param safity 
+   *
+   * @param key
+   * @param safity
    * @returns boolean
    */
   async hasKey(key: string, safity?: boolean): Promise<boolean> {
@@ -101,10 +104,10 @@ export class RedisService {
   }
 
   /**
-   * 
-   * @param key 
-   * @param ex 
-   * @returns 
+   *
+   * @param key
+   * @param ex
+   * @returns
    */
   async setExpires(key: string, ex: number): Promise<number> {
     return await this.client.expire(key, ex);

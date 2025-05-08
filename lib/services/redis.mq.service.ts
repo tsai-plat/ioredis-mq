@@ -24,7 +24,7 @@ import {
 import { promisify } from 'util';
 import { IORedisModuleError } from '../errors';
 
-const DEFAULT_LOCK_TTL = 5000;// PX
+const DEFAULT_LOCK_TTL = 5000; // PX
 const defaultChannels: MQChannelType[] = [DEFAUL_PUB_CHANNEL];
 const defaultMaxListeners = 5;
 export class RedisMQService implements OnModuleInit {
@@ -62,7 +62,6 @@ export class RedisMQService implements OnModuleInit {
   }
 
   async onModuleInit(): Promise<void> {
-    
     if (this.getSupportChannels()?.length) {
       this.subscribeToChannel(this.getSupportChannels());
     } else {
@@ -111,10 +110,7 @@ export class RedisMQService implements OnModuleInit {
       // messages are only locked by the registered handler
       await this.handleMessage(channel, message);
     });
-    this.logged(
-      'log',
-      `subscriber channels [${channels.join(',')}]`,
-    );
+    this.logged('log', `subscriber channels [${channels.join(',')}]`);
     await subscriber.subscribe(...channels);
   }
 
@@ -174,8 +170,8 @@ export class RedisMQService implements OnModuleInit {
   }
 
   registHandler(channel: MQChannelType, handler: MQHandleFn) {
-    if(this.debug){
-      this.logger.warn(`Regist channel [${channel}] for ${handler.name}`)
+    if (this.debug) {
+      this.logger.warn(`Regist channel [${channel}] for ${handler.name}`);
     }
     if (!this.channelMap.has(channel)) {
       throw new IORedisModuleError(
@@ -271,9 +267,9 @@ export class RedisMQService implements OnModuleInit {
 
   private async acquireLock(key: string, ttl = this.ttl): Promise<boolean> {
     const setAsync = promisify(this.redis.set).bind(this.redis);
-    this.redis.set('1',1,'NX')
+    this.redis.set('1', 1, 'NX');
 
-    const result = await setAsync(key, 'locked','NX','PX',ttl);
+    const result = await setAsync(key, 'locked', 'NX', 'PX', ttl);
     return result === 'OK';
   }
 

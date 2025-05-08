@@ -4,10 +4,10 @@ import { ConsumerAppService } from './consumer.service';
 import {
   IORedisModuleAsyncOptions,
   IORedisMQModule,
-  yamlConfigLoader,
 } from '@tsailab/ioredis-mq';
 
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { yamlConfigLoader } from './yaml.loader.service';
 
 @Module({
   imports: [

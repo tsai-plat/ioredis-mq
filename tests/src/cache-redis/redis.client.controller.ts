@@ -1,4 +1,12 @@
-import { Controller, Post, HttpCode, HttpStatus, Get,Query,Body } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  HttpCode,
+  HttpStatus,
+  Get,
+  Query,
+  Body,
+} from '@nestjs/common';
 import { RedisCliTestService } from './redis.client.service';
 
 @Controller('e2e/rediscli')
@@ -15,8 +23,10 @@ export class RedisClientController {
   @Get('get/spec_key')
   @HttpCode(HttpStatus.OK)
   async get(
-    @Query() 
-    querys: { key: string }
+    @Query()
+    querys: {
+      key: string;
+    },
   ) {
     const { key } = querys;
     return this.clientService.getCache(key);
