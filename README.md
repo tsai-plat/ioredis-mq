@@ -33,7 +33,7 @@ $ npm install -g @tsailab/ioredis-mq
 
 - RedisService: a ioredis client wrapper
 - RedisMQService: a ioredis pub/sub client wrapper
-- yamlConfigLoader : a environment yaml configuration files loader tool
+- yamlConfigLoader : start version 0.1.0 had removed,you can use @exaify/yml-config
 
 ### Configuration forRoot
 
@@ -67,7 +67,7 @@ import {
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      load: [yamlConfigLoader],
+      load: [yamlConfigLoader],//start version 0.1.0 had removed,you can use @exaify/yml-config
     }),
     IORedisMQModule.forRootAsync(
       {

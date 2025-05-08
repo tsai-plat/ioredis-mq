@@ -1,5 +1,11 @@
 # @tsailab/ioredis-mq
 
+## 0.1.0
+
+### Minor Changes
+
+- Feat: remove yaml config loader
+
 ## 0.0.8
 
 ### Patch Changes
