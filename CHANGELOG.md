@@ -1,5 +1,11 @@
 # @tsailab/ioredis-mq
 
+## 0.2.0
+
+### Minor Changes
+
+- update nestjs version supports
+
 ## 0.1.0
 
 ### Minor Changes
