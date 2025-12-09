@@ -109,6 +109,7 @@ export class IORedisCoreModule {
       // pust module services
       RedisService,
       RedisMQService,
+      NextnoCacheService,
       {
         provide: IOREDIS_MODULE_ID,
         useValue: generateModuleId(),
