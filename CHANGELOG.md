@@ -1,5 +1,11 @@
 # @tsailab/ioredis-mq
 
+## 0.2.1
+
+### Patch Changes
+
+- add nextno cache service
+
 ## 0.2.0
 
 ### Minor Changes
