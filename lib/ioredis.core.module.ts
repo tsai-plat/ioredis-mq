@@ -32,6 +32,7 @@ import {
 } from './helper/core.provider.helper';
 import { IORedisModuleError } from './errors';
 import { RedisMQService, RedisService } from './services';
+import { NextnoCacheService } from './services/nextno.service';
 
 @Global()
 @Module({})
@@ -61,6 +62,7 @@ export class IORedisCoreModule {
       createRedisMQClient,
       RedisService,
       RedisMQService,
+      NextnoCacheService,
     ];
 
     const exports: Array<symbol | string | Function> = [
@@ -69,6 +71,7 @@ export class IORedisCoreModule {
       IOREDIS_MQ_TOKEN,
       RedisService,
       RedisMQService,
+      NextnoCacheService,
     ];
 
     return {
@@ -118,6 +121,7 @@ export class IORedisCoreModule {
       createRedisMQClient,
       RedisService,
       RedisMQService,
+      NextnoCacheService,
     ];
 
     return {
