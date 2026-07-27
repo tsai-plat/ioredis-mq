@@ -14,4 +14,9 @@ export class ProducerController {
   async testpush(@Param('value') val: string) {
     return await this.appService.publishData(val);
   }
+
+  @Get('queue-demo/:value')
+  async pushToQueue(@Param('value') val: string) {
+    return await this.appService.enqueueQueueDemo(val);
+  }
 }

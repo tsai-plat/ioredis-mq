@@ -43,10 +43,19 @@ export interface MQOptions {
   micro?: boolean;
 }
 
+export interface RedisLogMQQueueOptions {
+  prefix?: string;
+  maxLen?: number;
+  blockTimeout?: number;
+}
+
 export type IORedisModuleOptions = ClientExtraOptions & {
-  channels?: MQChannelType[];
   redisOptions?: SingleRedisOptions | ClusterRedisOptions;
+  producer?: SingleRedisOptions | ClusterRedisOptions;
+  consumer?: SingleRedisOptions | ClusterRedisOptions;
+  channels?: MQChannelType[];
   mqOptions?: MQOptions;
+  queueOptions?: RedisLogMQQueueOptions;
 };
 
 /** MQ */

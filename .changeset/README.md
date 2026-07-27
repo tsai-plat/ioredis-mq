@@ -9,11 +9,8 @@ We have a quick list of common questions to get you started engaging with this p
 
 ## changeset workflow
 
-
-```bash 
+```bash
 # 进入预发布模式 <?> alpha beta or next
 pnpm exec changeset pre enter beta
-
-
 
 ```

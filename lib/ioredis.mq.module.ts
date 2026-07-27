@@ -4,11 +4,6 @@ import { IORedisCoreModule } from './ioredis.core.module';
 
 @Module({})
 export class IORedisMQModule {
-  /**
-   * Registers the module synchronously.
-   * @param options
-   * @returns IORedisMqModule
-   */
   static forRoot(
     options: IORedisModuleOptions,
     isGlobal: boolean = true,

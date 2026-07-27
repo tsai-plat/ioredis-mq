@@ -9,15 +9,24 @@ import { ProducerBService } from './producer.b.servcie';
     forwardRef(() =>
       IORedisMQModule.forRoot({
         redisOptions: {
-          host: '172.20.0.1',
+          host: 'localhost',
           port: 6379,
-          db: 7,
+          db: 5,
           password: 'admin123',
         },
         channels: ['chat-bot'],
         mqOptions: {
           micro: true,
           verbose: true,
+        },
+        producer: {
+          host: 'localhost',
+          port: 6379,
+          db: 4,
+          password: 'admin123',
+        },
+        queueOptions: {
+          prefix: 'syslog:',
         },
       }),
     ),

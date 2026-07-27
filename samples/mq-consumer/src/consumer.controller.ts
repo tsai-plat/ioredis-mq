@@ -9,4 +9,9 @@ export class ConsumerController {
   getHello() {
     return this.appService.sendMessage();
   }
+
+  @Get('queue-demo')
+  async consumeQueueDemo() {
+    return this.appService.consumeQueueMessage();
+  }
 }

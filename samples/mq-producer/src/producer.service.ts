@@ -1,5 +1,9 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { RedisMQService, RedisService } from '@tsailab/ioredis-mq';
+import {
+  RedisMQService,
+  RedisProducer,
+  RedisService,
+} from '@tsailab/ioredis-mq';
 
 interface DemoMqData {
   name: string;
@@ -12,6 +16,7 @@ export class ProducerAService {
   constructor(
     private readonly redis: RedisService,
     private readonly mq: RedisMQService,
+    private readonly queueProducer: RedisProducer,
   ) {
     this.logger.warn(`${ProducerAService.name}->>>${this.mq.mqid}`);
   }
@@ -34,5 +39,28 @@ export class ProducerAService {
     await this.mq.publishMessage(d, 'chat-bot');
 
     return JSON.stringify(d);
+  }
+
+  async enqueueQueueDemo(value: string) {
+    this.logger.debug('Producer: ', this.queueProducer.ping());
+    const queueKey = 'mklove';
+    const payload = {
+      source: ProducerAService.name,
+      value,
+      createdAt: new Date().toISOString(),
+    };
+
+    await this.queueProducer.lpush(queueKey, JSON.stringify(payload));
+    await this.queueProducer.rpush(
+      queueKey,
+      JSON.stringify({ ...payload, direction: 'right' }),
+    );
+
+    const length = await this.queueProducer.llen(queueKey);
+    return {
+      queueKey,
+      enqueued: payload,
+      queueLength: length,
+    };
   }
 }

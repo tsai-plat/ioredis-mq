@@ -8,11 +8,21 @@ import {
   IOREDIS_MERGED_OPTIONS_TOKEN,
   IOREDIS_MOULE_OPTIONS_TOKEN,
   IOREDIS_MQ_TOKEN,
+  IOREDIS_PRODUCER_CLIENT,
+  IOREDIS_CONSUMER_CLIENT,
 } from '../ioredis.constants';
 import { IORedisModuleOptions, Namespace } from '../interfaces/core.interface';
 import { IORedisModuleError } from '../errors';
-import { createRedisCluster } from './create.cluster.helper';
-import { createSingleRedis } from './create.redis.helper';
+import {
+  createConsumerRedisCluster,
+  createProducerRedisCluster,
+  createRedisCluster,
+} from './create.cluster.helper';
+import {
+  createConsumerSingleRedis,
+  createProducerSingleRedis,
+  createSingleRedis,
+} from './create.redis.helper';
 
 /**
  * options value provider
@@ -36,6 +46,7 @@ export const mergedOptionsProvider = {
   }),
   inject: [IOREDIS_MOULE_OPTIONS_TOKEN],
 };
+
 
 /**
  * inject main client
@@ -71,6 +82,40 @@ export const createRedisMQClient = {
     return type === 'cluster'
       ? createRedisCluster(options, IOREDIS_MQ_TOKEN)
       : createSingleRedis(options, IOREDIS_MQ_TOKEN);
+  },
+  inject: [IOREDIS_MERGED_OPTIONS_TOKEN],
+};
+
+export const createRedisProducerClient = {
+  provide: IOREDIS_PRODUCER_CLIENT,
+  useFactory: (options: IORedisModuleOptions) => {
+    if (!options) {
+      throw new IORedisModuleError(
+        `Please checked ${IOREDIS_MERGED_OPTIONS_TOKEN} injected.`,
+      );
+    }
+    const { type = 'single' } = options;
+
+    return type === 'cluster'
+      ? createProducerRedisCluster(options, IOREDIS_PRODUCER_CLIENT)
+      : createProducerSingleRedis(options, IOREDIS_PRODUCER_CLIENT);
+  },
+  inject: [IOREDIS_MERGED_OPTIONS_TOKEN],
+};
+
+export const createRedisConsumerClient = {
+  provide: IOREDIS_CONSUMER_CLIENT,
+  useFactory: (options: IORedisModuleOptions) => {
+    if (!options) {
+      throw new IORedisModuleError(
+        `Please checked ${IOREDIS_MERGED_OPTIONS_TOKEN} injected.`,
+      );
+    }
+    const { type = 'single' } = options;
+
+    return type === 'cluster'
+      ? createConsumerRedisCluster(options, IOREDIS_CONSUMER_CLIENT)
+      : createConsumerSingleRedis(options, IOREDIS_CONSUMER_CLIENT);
   },
   inject: [IOREDIS_MERGED_OPTIONS_TOKEN],
 };

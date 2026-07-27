@@ -29,7 +29,7 @@ import { yamlConfigLoader } from './yaml.loader.service';
               redisOptions: {
                 host: '172.20.0.1',
                 port: 6379,
-                db: 7,
+                db: 5,
                 password: '123',
               },
               channels: ['chat-bot'],

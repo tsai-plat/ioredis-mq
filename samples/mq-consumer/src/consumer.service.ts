@@ -2,6 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 
 import {
   MQMessageType,
+  RedisConsumer,
   RedisMQService,
   RedisService,
 } from '@tsailab/ioredis-mq';
@@ -17,6 +18,7 @@ export class ConsumerAppService {
   constructor(
     private readonly redis: RedisService,
     private readonly mq: RedisMQService,
+    private readonly queueConsumer: RedisConsumer,
   ) {
     // this.logger.log(this.mq.getSupportChannels());
     this.mq.registHandler('chat-bot', this.receivedHandler.bind(this));
@@ -46,5 +48,20 @@ export class ConsumerAppService {
     this.logger.log(
       `Consumer received channel[${channel}] \n ${JSON.stringify(message, null, 2)}`,
     );
+  }
+
+  async consumeQueueMessage() {
+    const queueKey = 'mklove';
+    const result = await this.queueConsumer.blpopData<Record<string, any>>(
+      queueKey,
+      1,
+    );
+    const length = await this.queueConsumer.llen(queueKey);
+
+    return {
+      queueKey,
+      result: result,
+      queueLength: length,
+    };
   }
 }

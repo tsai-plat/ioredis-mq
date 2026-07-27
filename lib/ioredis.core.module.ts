@@ -31,7 +31,12 @@ import {
   mergedOptionsProvider,
 } from './helper/core.provider.helper';
 import { IORedisModuleError } from './errors';
-import { RedisMQService, RedisService } from './services';
+import {
+  RedisConsumer,
+  RedisMQService,
+  RedisProducer,
+  RedisService,
+} from './services';
 import { NextnoCacheService } from './services/nextno.service';
 
 @Global()
@@ -63,15 +68,19 @@ export class IORedisCoreModule {
       RedisService,
       RedisMQService,
       NextnoCacheService,
+      RedisProducer,
+      RedisConsumer,
     ];
 
     const exports: Array<symbol | string | Function> = [
-      IOREDIS_MERGED_OPTIONS_TOKEN,
-      IOREDIS_DEFAULT_TOKEN,
-      IOREDIS_MQ_TOKEN,
+      IOREDIS_MERGED_OPTIONS_TOKEN, // mergeOption
+      IOREDIS_DEFAULT_TOKEN, // redisCli
+      IOREDIS_MQ_TOKEN, // mqRedisCli
       RedisService,
       RedisMQService,
       NextnoCacheService,
+      RedisProducer,
+      RedisConsumer,
     ];
 
     return {
@@ -114,6 +123,8 @@ export class IORedisCoreModule {
         provide: IOREDIS_MODULE_ID,
         useValue: generateModuleId(),
       },
+      RedisProducer,
+      RedisConsumer,
       ...(options.extraProviders || []),
     ];
     const exports: Array<Provider | Function | symbol | string> = [
@@ -123,6 +134,8 @@ export class IORedisCoreModule {
       RedisService,
       RedisMQService,
       NextnoCacheService,
+      RedisProducer,
+      RedisConsumer,
     ];
 
     return {

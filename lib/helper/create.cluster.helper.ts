@@ -56,3 +56,115 @@ export function createRedisCluster(
 
   return client;
 }
+
+/**
+ * 优先用 producer
+ * @param moduleOpts
+ * @param key
+ * @returns RedisCli
+ */
+export function createProducerRedisCluster(
+  moduleOpts: IORedisModuleOptions,
+  key: string | symbol,
+) {
+  const { readyLog, errorLog, onClientCreated, producer, consumer } =
+    moduleOpts;
+  const { nodes, ...commonOpitons } = (producer ||
+    consumer) as ClusterRedisOptions;
+
+  if (!nodes?.length)
+    throw new IORedisModuleError(
+      `ioredis module options cluster required nodes.`,
+    );
+
+  const client: Cluster = new Redis.Cluster(nodes, commonOpitons);
+
+  Reflect.defineProperty(client, NAMESPACE_KEY_TOKEN, {
+    value: key,
+    writable: false,
+    enumerable: false,
+    configurable: false,
+  });
+
+  if (readyLog) {
+    client.on('ready', () => {
+      logger.log(
+        READY_LOG(parseNamespace(get<Namespace>(client, NAMESPACE_KEY_TOKEN))),
+      );
+    });
+  }
+
+  if (errorLog) {
+    client.on('error', (error: Error) => {
+      logger.error(
+        ERROR_LOG(
+          parseNamespace(get<Namespace>(client, NAMESPACE_KEY_TOKEN)),
+          error.message,
+        ),
+        error.stack,
+      );
+    });
+  }
+
+  if (typeof onClientCreated === 'function') {
+    onClientCreated(client);
+  }
+
+  return client;
+}
+
+/**
+ * 优先用 producer
+ * @param moduleOpts
+ * @param key
+ * @returns RedisCli
+ */
+export function createConsumerRedisCluster(
+  moduleOpts: IORedisModuleOptions,
+  key: string | symbol,
+) {
+  const { readyLog, errorLog, onClientCreated, producer, consumer } =
+    moduleOpts;
+  const { nodes, ...commonOpitons } = (consumer ||
+    producer) as ClusterRedisOptions;
+
+  if (!nodes?.length)
+    throw new IORedisModuleError(
+      `ioredis module options cluster required nodes.`,
+    );
+
+  const client: Cluster = new Redis.Cluster(nodes, commonOpitons);
+
+  Reflect.defineProperty(client, NAMESPACE_KEY_TOKEN, {
+    value: key,
+    writable: false,
+    enumerable: false,
+    configurable: false,
+  });
+
+  if (readyLog) {
+    client.on('ready', () => {
+      logger.log(
+        READY_LOG(parseNamespace(get<Namespace>(client, NAMESPACE_KEY_TOKEN))),
+      );
+    });
+  }
+
+  if (errorLog) {
+    client.on('error', (error: Error) => {
+      logger.error(
+        ERROR_LOG(
+          parseNamespace(get<Namespace>(client, NAMESPACE_KEY_TOKEN)),
+          error.message,
+        ),
+        error.stack,
+      );
+    });
+  }
+
+  if (typeof onClientCreated === 'function') {
+    onClientCreated(client);
+  }
+
+  return client;
+}
