@@ -1,5 +1,11 @@
 # @tsailab/ioredis-mq
 
+## 0.3.0
+
+### Minor Changes
+
+- feat: add producer & consumer
+
 ## 0.2.2
 
 ### Patch Changes
