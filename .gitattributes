@@ -1,0 +1,8 @@
+# 所有代码文件统一仓库LF，Windows本地检出CRLF
+text=auto eol=lf
+
+# 特殊格式强制指定
+*.sh text eol=lf          # shell脚本必须LF
+*.bat text eol=crlf       # Windows批处理强制CRLF
+*.png *.jpg *.gif binary  # 二进制文件禁止换行转换
+*.pdf *.zip binary
